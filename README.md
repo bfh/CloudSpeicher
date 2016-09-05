@@ -9,5 +9,5 @@
 7. Man hat die Kontrolle von seinen eigenen Daten.
 8. 
 
-Team :
+#Team :
 Mithat Kanzoski & Birla Ioana Roxana 
