@@ -7,3 +7,7 @@
 5. Man könnte den Speicherplatz selber bestimmen.
 6. Die Anwender benötigen kein montaliches Abonnomment. 
 7. Man hat die Kontrolle von seinen eigenen Daten.
+8. 
+
+Team :
+Mithat Kanzoski & Birla Ioana Roxana 
