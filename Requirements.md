@@ -12,16 +12,18 @@
 
 # Nötige Material für das Projekt
 
-1.Raspberry PI 2 >ok
+1.  Raspberry PI 2 >ok
 1b. Raspi PI 3 (2mal)
 1c. SD karte 8 gb (1mal)
-2.Netzteil für  Raspberry Pi (2mal)
-3.Betriebssystem Raspbian >ok
-4.SD Karte mindestens 8 Gb >ok
-5.Eine Tastatur
-6.Ein Maus >ok
-7.Monitor Adapterkabel und HDMI zu DVI
-8.LAN Kabel 2 m
-9.Usb Stick 64 Gb 
+2.  Netzteil für  Raspberry Pi (2mal)
+3.  Betriebssystem Raspbian >ok
+4.  SD Karte mindestens 8 Gb >ok
+5.  Eine Tastatur
+6.  Ein Maus >ok
+7.  Monitor Adapterkabel und HDMI zu DVI
+8.  LAN Kabel 2 m
+9.  Usb Stick 64 Gb 
 
 
+[x] check 1
+[ ] check2
