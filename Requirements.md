@@ -1,9 +1,9 @@
 # Benutzer Requirements 
 
- 1. -Der Benutzer benötigt ein Account und ein Password.
- 2. -Sobald der Benutzer eingeloggt ist, können die gewünschte Datei heruntergeladen werden.
- 3. -Der Benutzer kann die Datei von dem Computer auswählen und hochladen.
- 4. -Der Benutzer kann seine gespeicherte Dateien von Raspberry PI mit anderen Geräte synchronisieren.
+ 1. Der Benutzer benötigt ein Account und ein Password.
+ 2. Sobald der Benutzer eingeloggt ist, können die gewünschte Datei heruntergeladen werden.
+ 3. Der Benutzer kann die Datei von dem Computer auswählen und hochladen.
+ 4. Der Benutzer kann seine gespeicherte Dateien von Raspberry PI mit anderen Geräte synchronisieren.
 
 # Technische Spezifikationen
 1. Python / Sqlite
