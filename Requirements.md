@@ -14,7 +14,7 @@
 # System Requirements	
 - [ ]  1. Die Applikation müss Syncronisierung zwichen verschiedenen Arten von Betriebssystemen machen mithilfe einer Applikation oder App	
 - [x]  2. Der Cloud Speicher muss auf einem Raspberry PI 3 laufen 	
-- [ ]  3. Die Cloud Speicher-Applikation muss auf einem Speicher OS funktionieren	
+- [x]  3. Die Cloud Speicher-Applikation muss auf einem Speicher OS funktionieren	
 - [ ]  5. 4. Der Cloud Speicher muss auf einem Apache Web-Server laufen 	
 - [x]  6. Die Daten müssen auf einem USB-Stick gespeichert werden 	
 - [ ]  7. Die Cloud-Aplikation wird mit einer standardisierten Cloud-Speicher-Software umgesetzt	
@@ -27,7 +27,7 @@
 - [x]  1a.  Raspberry PI 2 
 - [ ]  1b. Raspi PI 3 (2mal)
 - [x]  1c. SD karte 8 gb (1mal)
-- [ ]  2. Netzteil für  Raspberry Pi (2mal)
+- [x]  2. Netzteil für  Raspberry Pi (2mal)
 - [x]  3. Betriebssystem Raspbian
 - [x]  4. SD Karte mindestens 8 Gb 
 - [x]  5. Eine Tastatur
