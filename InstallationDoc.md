@@ -20,11 +20,11 @@
 1. Die aktuelle Raspbian-version “ debian wheezy ” (www.raspberry.org/downloads) verwenden. Wir verwenden ein Network Installer
 2. Raspbian mithilfe der Installer  NOOBS Lite installieren (www.raspberrypi.org/downloads) 
 3. SD-Karte mit Disk Utiliy (Festplattendienstprogramm) formatieren anhand  der Einleitung README zipfile im NOOBS Installer Packet
-3. Der Raspberry pi mit der Speicherkarte starten und "Raspbian" auswählen
-4. Sprache "Deutsch" auswählen
-5. Nach der Installation, Raspi bootet der Raspberry neu und startet automatisch das konfigurationstool 
+4. Der Raspberry pi mit der Speicherkarte starten und "Raspbian" auswählen
+5. Sprache "Deutsch" auswählen
+6. Nach der Installation, Raspi bootet der Raspberry neu und startet automatisch das konfigurationstool 
 	`raspi-config`
-  5.1 Internationalisation option : zeitzone einstellen (change timezone)
+  6.1 Internationalisation option : zeitzone einstellen (change timezone)
 6. Der Raspbery musst eine Interbetverbindung haben, damit  die Instalationsdaten heruntergeladen werden können
 7. Noobs startet und Raspian installieren.
 
