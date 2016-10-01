@@ -16,13 +16,13 @@
 12. [OwnCloud Einrichten und anpassen](#OwnCloud Einrichten und anpassen)
 13. [pagekite einrichten](#pagekite einrichten)
 
-# Raspian installieren
+## Raspian installieren
 
 1. Noobs light herunterladen und mit hilfe der readme Datei im zipfile auf die SD-Card installieren
 2. Raspi anschliessen (auch auch das Netzwerkkabel mit Internetverbindung)
 3. Noobs startet und Raspian installieren.
 
-# Updaten und Konfigration DNS
+## Updaten und Konfigration DNS
 
 UPDASDASDAJSDJAJS
 
