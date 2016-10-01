@@ -3,7 +3,7 @@
 ### Inhaltsverzeichnis
 		
 - [Raspian installieren](#Raspian-installieren)
-- [Updaten und Konfigration DNS](#Updaten-und-Konfigration-DNS)
+- [Updaten und Konfigration DNS](#updaten-und-konfigration-dns)
 3. [Apache2 installieren (und testen)] (#Apache2-installieren-(und-testen))
 4. [PHP Modul installieren](#und testen)
 5. [MySQL installieren](#MySQL installieren)
