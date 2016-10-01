@@ -24,7 +24,7 @@
 4. Sprache "Deutsch" auswählen
 5. Nach der Installation, Raspi bootet der Raspberry neu und startet automatisch das konfigurationstool 
 	`raspi-config`
-  555555 Internationalisation option : zeitzone einstellen (change timezone)
+  5.1 Internationalisation option : zeitzone einstellen (change timezone)
 6. Der Raspbery musst eine Interbetverbindung haben, damit  die Instalationsdaten heruntergeladen werden können
 7. Noobs startet und Raspian installieren.
 
