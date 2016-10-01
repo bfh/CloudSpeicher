@@ -15,7 +15,6 @@
 12. [OwnCloud Einrichten und anpassen](#OwnCloud Einrichten und anpassen)
 13. [pagekite einrichten](#pagekite einrichten)
 
-https://github.com/bfh/CloudSpeicher/blob/master/InstallationDoc.md#apache2-installieren-und-testen
 
 ## Raspian installieren
 1. Die aktuelle Raspbian-version “ debian wheezy ” (www.raspberry.org/downloads) verwenden. Wir verwenden ein Network Installer
@@ -25,7 +24,7 @@ https://github.com/bfh/CloudSpeicher/blob/master/InstallationDoc.md#apache2-inst
 4. Sprache "Deutsch" auswählen
 5. Nach der Installation, Raspi bootet der Raspberry neu und startet automatisch das konfigurationstool 
 	`raspi-config`
-  5.1 Internationalisation option : zeitzone einstellen (change timezone)
+  555555 Internationalisation option : zeitzone einstellen (change timezone)
 6. Der Raspbery musst eine Interbetverbindung haben, damit  die Instalationsdaten heruntergeladen werden können
 7. Noobs startet und Raspian installieren.
 
