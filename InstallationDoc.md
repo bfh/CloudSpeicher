@@ -1,11 +1,9 @@
 **Table of Contents**  *generated with [DocToc](http://doctoc.herokuapp.com/)*
 
-		- [Inhaltsverzeichnis](#)
-- [Raspian installieren](#Raspian installieren)
 
 ### Inhaltsverzeichnis
 
-1. Raspian installieren
+1. Raspian installieren (#Raspian installieren)
 2. Updaten und Konfigration (DNS)
 3. Apache2 installieren (und testen)
 4. PHP Modul installieren (und testen)
