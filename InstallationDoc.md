@@ -16,7 +16,7 @@
 
 
 
-## 1. Raspian installieren
+## 1.Raspian installieren
 
 1. Raspbian mithilfe der Installer  NOOBS Lite installieren (www.raspberrypi.org/downloads). Wir verwenden ein Network Installer
 2. SD-Karte mit Disk Utiliy formatieren (FAT32),anhand  der Einleitung README zipfile im NOOBS Installer Packet
