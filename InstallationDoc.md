@@ -2,17 +2,17 @@
 ### Inhaltsverzeichnis
 		
 1. [Raspian installieren](#1raspian-installieren)
-2. [Grundeinrichtung System, Tastatur und Sprache](#grundeinrichtung-system,-tastatur-und-sprache)
-3. [Netzwerk einrichten](#netzwerk-einrichten)
-4. [System aktualisieren](#system-aktualisieren)
-5. [Raspberry Pi Grundeinrichtung via Konsole](#raspberry-pi-grundeinrichtung-via-konsole)
-6. [Via Konsole mit SSH Verbinde](#via-konsole-mit-ssh-verbinden)
-7. [Raspberry Pi Remote konfigurieren](#raspberry-pi-remote-konfigurieren)
-8. [System aktualisieren-2](#system-aktualisieren-2)
-9. [Apache2 Webserver für OwnCloud installieren und testen](#apache2-webserver-für-owncloud-installieren-und-testen)
-10. [PHP Modul installieren und testen](#php-modul-installieren-und-testen)
-11. [MySQL installieren](#mysql-instalieren)
-12. [phpMyAdmin instalieren](#phpmyadmin-instalieren)
+2. [Grundeinrichtung System, Tastatur und Sprache](#2grundeinrichtung-system,-tastatur-und-sprache)
+3. [Netzwerk einrichten](#3netzwerk-einrichten)
+4. [System aktualisieren](#4system-aktualisieren)
+5. [Raspberry Pi Grundeinrichtung via Konsole](#4raspberry-pi-grundeinrichtung-via-konsole)
+6. [Via Konsole mit SSH Verbinde](#6via-konsole-mit-ssh-verbinden)
+7. [Raspberry Pi Remote konfigurieren](#r7aspberry-pi-remote-konfigurieren)
+8. [System aktualisieren-2](#8system-aktualisieren-2)
+9. [Apache2 Webserver für OwnCloud installieren und testen](#9apache2-webserver-für-owncloud-installieren-und-testen)
+10. [PHP Modul installieren und testen](#10php-modul-installieren-und-testen)
+11. [MySQL installieren](#11mysql-instalieren)
+12. [phpMyAdmin instalieren](#12phpmyadmin-instalieren)
 
 
 
