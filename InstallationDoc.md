@@ -2,7 +2,9 @@
 ### Inhaltsverzeichnis
 		
 1. [Raspian installieren](#1raspian-installieren)
-2. [Grundeinrichtung System, Tastatur und Sprache](#2grundeinrichtung-system,-tastatur-und-sprache)
+2. [Grundeinrichtung System, Tastatur und Sprache](#2-grundeinrichtung-system-tastatur-und-sprache)
+
+
 3. [Netzwerk einrichten](#3netzwerk-einrichten)
 4. [System aktualisieren](#4system-aktualisieren)
 5. [Raspberry Pi Grundeinrichtung via Konsole](#4raspberry-pi-grundeinrichtung-via-konsole)
