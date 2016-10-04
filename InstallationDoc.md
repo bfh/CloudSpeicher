@@ -30,23 +30,24 @@
 
 ## 2. Grundeinrichtung System, Tastatur und Sprache
 
-- Nachdem die SD-Karte im Pi eingesteckt ist die Geräte wie Tastatur, Maus, Bildschirm und entweder das LAN Kabel (bei älteren Modellen u.U. den USB WLAN Adapter) verbunden habt landet ihr beim ersten Start von Raspbian grundsätzlich auf dem Desktop. 
+- Nachdem die SD-Karte im Pi eingesteckt ist, die Geräte wie Tastatur, Maus, Bildschirm verbunden sind, ersten Start von Raspbian wird grundsätzlich auf dem Desktop stattfinden.
 1. Öffnet das Menu oben links
 ![rasuberry erste start](https://cloud.githubusercontent.com/assets/21320216/19016589/bc396d54-881e-11e6-8264-8e405f0e542f.png)
 2. Öffnet das Unter-Menu Preferences
-3. Öffnet das Unter-Menu Preferences
-4. Im Programm klickt ihr nun auf Expand Filesystem
+3. Im Programm klickt ihr nun auf Expand Filesystem
+
 ![raspberry-pi-expand-file-system](https://cloud.githubusercontent.com/assets/21320216/19016595/e14f22b4-881e-11e6-9c98-0986a3e31714.png)
-5. Wechselt dann auf den Reiter Localisation um die Sprache und Tastatur auf deutsch umzustellen
-6. Öffnet hierzu Set Locale und nehmt folgende Einstellungen vor (es empfiehlt sich die Sprache auf English zu lassen um Übersetzungsfehler zu vermeiden)
-  6.1 Language: de (German)
-  6.2 Country: DE (Germany)
-  6.3 Character Set: UTF-8
-7. Im Menu Set Timezone wird die richtige Zeitzone eingestellt
-8. Das Tastaturlayout stellen wir dann noch über Set Keyboard ein
+
+4. Wechselt dann auf den Reiter Localisation um die Sprache und Tastatur auf deutsch umzustellen
+5. Öffnet hierzu Set Locale und nehmt folgende Einstellungen vor (es empfiehlt sich die Sprache auf English zu lassen um Übersetzungsfehler zu vermeiden)
+  5.1 Language: de (German)
+  5.2 Country: DE (Germany)
+  5.3 Character Set: UTF-8
+6. Im Menu Set Timezone wird die richtige Zeitzone eingestellt
+7. Das Tastaturlayout stellen wir dann noch über Set Keyboard ein
   8.1 Country: Switzerland
   8.2 Variant: German
-9. Beendet die Raspberry Pi Configuration mit einem Klick auf OK und bestätigt die Rückfrage nach einem Neustart mit Yes
+8. Beendet die Raspberry Pi Configuration mit einem Klick auf OK und bestätigt die Rückfrage nach einem Neustart mit Yes
 
 
 
