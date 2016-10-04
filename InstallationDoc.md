@@ -32,7 +32,9 @@
 
 - Nachdem die SD-Karte im Pi eingesteckt ist, die Geräte wie Tastatur, Maus, Bildschirm verbunden sind, ersten Start von Raspbian wird grundsätzlich auf dem Desktop stattfinden.
 1. Öffnet das Menu oben links
+
 ![rasuberry erste start](https://cloud.githubusercontent.com/assets/21320216/19016589/bc396d54-881e-11e6-8264-8e405f0e542f.png)
+
 2. Öffnet das Unter-Menu Preferences
 3. Im Programm klickt ihr nun auf Expand Filesystem
 
