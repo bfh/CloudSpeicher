@@ -161,7 +161,7 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 
 
 
-## 10.PHP Modul installieren und testen
+## 10. PHP Modul installieren und testen
 1. Installieren
 	`sudo apt-get install php5`
 2. Installation testen
@@ -210,7 +210,7 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 - Somit läuft phpMyAdmin auf deinem Raspberry Pi!
 
 
-##13. [Datenspeicher konfigurieren und mounten](#Datenspeicher konfigurieren und mounten)
+## 13. [Datenspeicher konfigurieren und mounten](#Datenspeicher konfigurieren und mounten)
    13.1 Der Treiber installieren, damit NTFS Speichermedien eingebunden werden kann
 	` sudo apt-get -y install ntfsprogs `
    13.2 Neue Ordner in Verzeichnis /media anlegen (hier wird später der Usb-Speichermedium eingebunden - ist als Mountpoint gennant)
@@ -233,7 +233,7 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 
 
 
-##14. [Owncloud installieren](#Owncloud installieren)
+## 14. [Owncloud installieren](#Owncloud installieren)
 
    1. Das OwnCloud Repository einfügen
 
@@ -258,7 +258,7 @@ sudo sh -c "echo 'deb http://download.owncloud.org/download/repositories/stable/
 	` FLUSH PRIVILEGES;
 	  exit; `
 
-##15. Webserver für OwnCloud mit SSL absichern
+## 15. Webserver für OwnCloud mit SSL absichern
 	` sudo openssl genrsa -out server.key 4096
 	  sudo openssl req -new -key server.key -out server.csr `
    1. Common Name - Hostname oder den kompletten DynDNS Namen des Raspbis : “raspberrypi”
@@ -270,5 +270,5 @@ sudo sh -c "echo 'deb http://download.owncloud.org/download/repositories/stable/
  	  sudo mv server.key /root/server.key
 	  sudo mv server.crt /root/server.crt `
 
-##16. Webserver für OwnCloud konfigurieren
+## 16. Webserver für OwnCloud konfigurieren
 
