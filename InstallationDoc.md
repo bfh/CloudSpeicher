@@ -114,19 +114,21 @@
 1. Nachdem die IP-Adresse oder den Hostnamen (raspberrypi) in der Terminal eingegeben wurde, sollte sich ein Terminal öffnen das nach einem Benutzer und Passwort fragt.
 	- dort mit den bekannten Daten (pi & raspberry) einloggen 
 2. Konfiguration führen
+
 	`$ sudo raspi-config`
 	
-  - Schritt 1: Expand Filesystem markieren und Enter drücken, mit Ok bestätigen
-  - Schritt 2: Change User Password markieren und Enter drücken. Die nächste Meldung mit Ok bestätigen und in der Konsole das neue Passwort eingeben.
-  - Schritt 3: Enable Boot to Desktop/Scratch markieren und Enter drücken
-  - Schritt 4: Internationalisation Options markieren und mit Enter öffnen.
+  - 1. Expand Filesystem markieren und Enter drücken, mit Ok bestätigen
+  - 2. Change User Password markieren und Enter drücken. Die nächste Meldung mit Ok bestätigen und in der Konsole das neue Passwort eingeben.
+  - 3. Enable Boot to Desktop/Scratch markieren und Enter drücken
+  - 4. Internationalisation Options markieren und mit Enter öffnen.
      - Change Locale auswählen -> in der Liste de_DE.UTF-8 UTF 8 mit Leertaste markieren  -> Enter drücken und de_DE.UTF-8 auswählen  -> Enter drücken.
     - Wieder in Menüpunkt 4 und diesmal Change Timezone -> Enter auswählen -> die richtige Zeitzone einstellen 
-  - Schritt 5: Overclock markieren -> Enter drücken -> die Warnung mit Enter bestätigen -> Medium markieren und Enter drücken 
-  - Schritt 6: Advanced Options markieren und mit Enter bestätigen. 
+  - 5. Overclock markieren -> Enter drücken -> die Warnung mit Enter bestätigen -> Medium markieren und Enter drücken 
+  - 6. Advanced Options markieren und mit Enter bestätigen. 
      - Memory Split auswählen und mit Enter öffnen. Dort 16 eintragen und mit Enter bestätigen.
-  - Schritt 7: Finish über zwei mal Tabulator drücken wählen und mit Enter bestätigen. Danach zum Abschluss im Terminal folgendes eintippen:
-	`sudo reboot`
+  - 7. Finish über zwei mal Tabulator drücken wählen und mit Enter bestätigen. Danach zum Abschluss im Terminal folgendes eintippen:
+  
+	`$ sudo reboot`
 
 
 ## 8. System aktualisieren-2
@@ -140,6 +142,7 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 - Damit ist der Pi nun startklar für den ersten Projekt
 
 - Befehl für die Ausschalten des Rasspberry Pi : 
+
 	`$ sudo shutdown -h now`
 
 
@@ -178,15 +181,19 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 	
 2. Installation testen
 - Das Verzeichnis wechseln (/var/www)
-	`cd /var/www`
+
+	`$ cd /var/www`
+	
 3. Die Datei phpinfo.php erstellen
 
 	`$ sudo nano phpinfo.php`
 	
 4. Mit dem Nano Editor den folgenden Text in die Datei schreiben:
+
        `<?php
 	phpinfo();
 	?>`
+	
 5. CTRL + X; CTRL + O verwenden
 6. In dem Browser die IP Adresse + php.info eingeben
 ![8_phpinfo](https://cloud.githubusercontent.com/assets/21320216/19017087/c5006572-882e-11e6-8fdd-cf9b8a27701e.png)
@@ -215,9 +222,13 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 ## 12. phpMyAdmin instalieren
 
 1. Root Rechte holen
+
 	`$ sudo bash`
+	
 2. phpMyAdmin installieren
+
 	`$ apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin`
+	
 3. phpMyAdmin auf Apache konfigurieren
  - "apache2" auswählen
 4. Datenbanken automatisch erstellen
