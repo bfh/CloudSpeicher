@@ -275,15 +275,22 @@ sudo sh -c "echo 'deb http://download.owncloud.org/download/repositories/stable/
 	  exit; `
 
 ## 15. Webserver für OwnCloud mit SSL absichern
+
 	` $ sudo openssl genrsa -out server.key 4096
+	
 	  $ sudo openssl req -new -key server.key -out server.csr `
+	  
    1. Common Name - Hostname oder den kompletten DynDNS Namen des Raspbis : “raspberrypi”
    2. Digitales SSL Zertifikat erstellen
+   
 	` $ sudo openssl x509 -req -days 1825 -in server.csr -signkey server.key -out server.crt -sha256 `
+	
 	- die “server.crt” Datei ist nun unser SSL-Zertifikat
   3. Die Dateien daher in ein anderes Verzeichnis für die spätere Verwendung verschieben
 	`$ sudo chmod 400 server.key
+
  	 $ sudo mv server.key /root/server.key
+	 
 	 $ sudo mv server.crt /root/server.crt `
 
 ## 16. Webserver für OwnCloud konfigurieren
