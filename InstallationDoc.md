@@ -88,7 +88,7 @@
 	Passwort: raspberry
 	`
 	
-1. Im Terminal über  `raspi-config`  konfigurieren
+1. Im Terminal über  `$ raspi-config`  konfigurieren
 
 ![raspi-config2](https://cloud.githubusercontent.com/assets/21320216/19016649/0ac09662-8821-11e6-865e-62c679fbea56.png)
 
@@ -98,7 +98,7 @@
 2. Um über PC zugreifen zu können muss SSH aktiviert sein.
 	- Im Hauptmenu Advanced Options markieren und mit Enter bestätigen. Jetzt SSH auswählen und mit Enter öffnen. Dort Enable bestätigen.
 3. “Finish” wählen und 
- ` sudo reboot `
+ ` $sudo reboot `
 
 
 ## 6. Via Konsole mit SSH Verbinden
@@ -114,7 +114,7 @@
 1. Nachdem die IP-Adresse oder den Hostnamen (raspberrypi) in der Terminal eingegeben wurde, sollte sich ein Terminal öffnen das nach einem Benutzer und Passwort fragt.
 	- dort mit den bekannten Daten (pi & raspberry) einloggen 
 2. Konfiguration führen
-	`sudo raspi-config`
+	`$ sudo raspi-config`
 	
   - Schritt 1: Expand Filesystem markieren und Enter drücken, mit Ok bestätigen
   - Schritt 2: Change User Password markieren und Enter drücken. Die nächste Meldung mit Ok bestätigen und in der Konsole das neue Passwort eingeben.
@@ -123,33 +123,39 @@
      - Change Locale auswählen -> in der Liste de_DE.UTF-8 UTF 8 mit Leertaste markieren  -> Enter drücken und de_DE.UTF-8 auswählen  -> Enter drücken.
     - Wieder in Menüpunkt 4 und diesmal Change Timezone -> Enter auswählen -> die richtige Zeitzone einstellen 
   - Schritt 5: Overclock markieren -> Enter drücken -> die Warnung mit Enter bestätigen -> Medium markieren und Enter drücken 
-  - Step 6: Advanced Options markieren und mit Enter bestätigen. 
+  - Schritt 6: Advanced Options markieren und mit Enter bestätigen. 
      - Memory Split auswählen und mit Enter öffnen. Dort 16 eintragen und mit Enter bestätigen.
-- Schritt 7: Finish über zwei mal Tabulator drücken wählen und mit Enter bestätigen. Danach zum Abschluss im Terminal folgendes eintippen:
+  - Schritt 7: Finish über zwei mal Tabulator drücken wählen und mit Enter bestätigen. Danach zum Abschluss im Terminal folgendes eintippen:
 	`sudo reboot`
 
 
 ## 8. System aktualisieren-2
 
 Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht:
-       `sudo apt-get update
-	sudo apt-get upgrade
-	sudo reboot`
+       `$ sudo apt-get update
+       
+	$ sudo apt-get upgrade
+	
+	$ sudo reboot`
 - Damit ist der Pi nun startklar für den ersten Projekt
 
 - Befehl für die Ausschalten des Rasspberry Pi : 
-	`sudo shutdown -h now`
+	`$ sudo shutdown -h now`
 
 
 
 ## 9. Apache2 Webserver für OwnCloud installieren und testen
 
 1. Apache2 Webserver installieren 
-	`sudo apt-get install apache2 -y`
+
+	`$ sudo apt-get install apache2 -y`
+	
 2. Der WEB SERVER testen
  - http://localhost/
  - http://Raspberrys Pi`s Adress
- - die Raspberry Pi Adresse herausfinden: `hostname -I`
+ - die Raspberry Pi Adresse herausfinden: 
+ 
+ `$ hostname -I`
 	
 ![apache-it-works](https://cloud.githubusercontent.com/assets/21320216/19016867/fa589f26-8826-11e6-9091-ab9024e5b60e.png)
 - Das zeigt, das der Apache Webserver funktioniert
@@ -158,19 +164,25 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 - Diese Standard-Web-Seite ist nur eine HTML-Datei auf dem Dateisystem . Es befindet sich auf: `/var/www/html/index.html`
 - Hinweis: Das Verzeichnis war `/ var / www` in Raspbian Wheezy ist aber jetzt `/ var / www / html` in Raspbian Jessie
 - Navigieren zu diesem Verzeichnis im Terminal 
-	`cd /var/www/html
-	 ls -al`
+
+	`$ cd /var/www/html
+	
+	 $ ls -al`
 
 
 
 ## 10. PHP Modul installieren und testen
 1. Installieren
-	`sudo apt-get install php5`
+
+	`$ sudo apt-get install php5`
+	
 2. Installation testen
 - Das Verzeichnis wechseln (/var/www)
 	`cd /var/www`
 3. Die Datei phpinfo.php erstellen
-	`sudo nano phpinfo.php`
+
+	`$ sudo nano phpinfo.php`
+	
 4. Mit dem Nano Editor den folgenden Text in die Datei schreiben:
        `<?php
 	phpinfo();
@@ -185,20 +197,22 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 ## 11. MySQL installieren
 
 1. Root Rechte holen
-	`sudo bash`
+
+	`$ sudo bash`
+	
 2. MySQL installieren
 	`apt-get install mysql-server mysql-client php5-mysql`
 3. Passwort festlegen
 4. Neustart
-	`sudo restart`
+	`$ sudo restart`
 
 
 ## 12. phpMyAdmin instalieren
 
 1. Root Rechte holen
-	`sudo bash`
+	`$ sudo bash`
 2. phpMyAdmin installieren
-	`apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin`
+	`$ apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin`
 3. phpMyAdmin auf Apache konfigurieren
  - "apache2" auswählen
 4. Datenbanken automatisch erstellen
@@ -214,22 +228,22 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 
 ## 13. [Datenspeicher konfigurieren und mounten](#Datenspeicher konfigurieren und mounten)
    13.1 Der Treiber installieren, damit NTFS Speichermedien eingebunden werden kann
-	` sudo apt-get -y install ntfsprogs `
+	`$ sudo apt-get -y install ntfsprogs `
    13.2 Neue Ordner in Verzeichnis /media anlegen (hier wird später der Usb-Speichermedium eingebunden - ist als Mountpoint gennant)
-	` sudo mkdir /media/usb-hdd `	
+	`$ sudo mkdir /media/usb-hdd `	
    13.3 Die Log Ausgabe aktivieren, um herauszufinden welchem Gerät die Festplatte zugeordnet wird
-	` tail –f /var/log/messages `
+	`$ tail –f /var/log/messages `
      - es kann sein, dass die USB-Stick als `sda1` erkannt ist
    13.4 Der folgende Befehl angeben, um die UUID der Festplatte zu erhalten, und ersetzt SDA1 mit dem Gerät
-	` sudo blkid /dev/sda1 `
+	`$ sudo blkid /dev/sda1 `
 	- der UUID notieren
    13.5 Zum automatisch mounten des richtigen USB-Sticks wird die “fstab” mit NANO editiert
-	` sudo nano /etc/fstab `
+	`$ sudo nano /etc/fstab `
    13.6 Am Ende der Datei die folgende Zeile einführen und mit UUID ersetzen
 	- nach der nächsten Neustart wird der USB-Stick unter /media/usb-hdd/ automatisch eingehängt
 	“ UUID=1C5638245637FCD8 /media/usb-hdd/ ntfs-3g permissions,defaults,auto ”
    13.7 Rebooten
-	` 	`sudo reboot `
+	` 	`$ sudo reboot `
 	- Tipp: Nach dem Reboot überprüfen, ob der USB-Stick über  /media/usb-hdd/ zugreifbar ist 
 
 
@@ -261,16 +275,16 @@ sudo sh -c "echo 'deb http://download.owncloud.org/download/repositories/stable/
 	  exit; `
 
 ## 15. Webserver für OwnCloud mit SSL absichern
-	` sudo openssl genrsa -out server.key 4096
-	  sudo openssl req -new -key server.key -out server.csr `
+	` $ sudo openssl genrsa -out server.key 4096
+	  $ sudo openssl req -new -key server.key -out server.csr `
    1. Common Name - Hostname oder den kompletten DynDNS Namen des Raspbis : “raspberrypi”
    2. Digitales SSL Zertifikat erstellen
-	` sudo openssl x509 -req -days 1825 -in server.csr -signkey server.key -out server.crt -sha256 `
+	` $ sudo openssl x509 -req -days 1825 -in server.csr -signkey server.key -out server.crt -sha256 `
 	- die “server.crt” Datei ist nun unser SSL-Zertifikat
   3. Die Dateien daher in ein anderes Verzeichnis für die spätere Verwendung verschieben
-	` sudo chmod 400 server.key
- 	  sudo mv server.key /root/server.key
-	  sudo mv server.crt /root/server.crt `
+	`$ sudo chmod 400 server.key
+ 	 $ sudo mv server.key /root/server.key
+	 $ sudo mv server.crt /root/server.crt `
 
 ## 16. Webserver für OwnCloud konfigurieren
 
