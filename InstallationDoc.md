@@ -287,6 +287,7 @@ sudo sh -c "echo 'deb http://download.owncloud.org/download/repositories/stable/
 	
 	- die “server.crt” Datei ist nun unser SSL-Zertifikat
   3. Die Dateien daher in ein anderes Verzeichnis für die spätere Verwendung verschieben
+  
 	`$ sudo chmod 400 server.key
 
  	 $ sudo mv server.key /root/server.key
