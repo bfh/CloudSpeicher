@@ -74,7 +74,9 @@
 2. Die folgend Befehle werden angegeben um den Raspberry Pi zu aktualisieren 
 
 	`$ sudo apt-get update`
+	
 	`$ sudo apt-get upgrade`
+	
 	`$ sudo reboot` / `sudo shutdown -h now`
 
 
