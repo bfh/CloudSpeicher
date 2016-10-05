@@ -14,10 +14,10 @@
 10. [PHP Modul installieren und testen](#10php-modul-installieren-und-testen)
 11. [MySQL installieren](#11-mysql-installieren)
 12. [phpMyAdmin instalieren](#12-phpmyadmin-instalieren)
-13. [Datenspeicher konfigurieren und mounten](#13datenspeicher-konfigurieren-und-mounten)
-14. [Owncloud installieren](#14owncloud-installieren)
-15. [Webserver für OwnCloud mit SSL absichern](#15webserver-für-owncloud-mit-ssl-absichern)
-16. [Webserver für OwnCloud konfigurieren](#16Webserver-für-owncloud-konfigurieren)
+13. [Datenspeicher konfigurieren und mounten](#13-datenspeicher-konfigurieren-und-mounten)
+14. [Owncloud installieren](#14-owncloud-installieren)
+15. [Webserver für OwnCloud mit SSL absichern](#15-webserver-für-owncloud-mit-ssl-absichern)
+16. [Webserver für OwnCloud konfigurieren](#16-Webserver-für-owncloud-konfigurieren)
 
 
 
