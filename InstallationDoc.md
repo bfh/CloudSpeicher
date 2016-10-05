@@ -198,12 +198,17 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 
 1. Root Rechte holen
 
+
 	`$ sudo bash`
 	
+	
 2. MySQL installieren
+
 	`apt-get install mysql-server mysql-client php5-mysql`
+	
 3. Passwort festlegen
 4. Neustart
+
 	`$ sudo restart`
 
 
@@ -228,22 +233,34 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 
 ## 13. [Datenspeicher konfigurieren und mounten](#Datenspeicher konfigurieren und mounten)
    13.1 Der Treiber installieren, damit NTFS Speichermedien eingebunden werden kann
+   
 	`$ sudo apt-get -y install ntfsprogs `
+	
    13.2 Neue Ordner in Verzeichnis /media anlegen (hier wird später der Usb-Speichermedium eingebunden - ist als Mountpoint gennant)
+   
 	`$ sudo mkdir /media/usb-hdd `	
+	
    13.3 Die Log Ausgabe aktivieren, um herauszufinden welchem Gerät die Festplatte zugeordnet wird
+   
 	`$ tail –f /var/log/messages `
+	
      - es kann sein, dass die USB-Stick als `sda1` erkannt ist
    13.4 Der folgende Befehl angeben, um die UUID der Festplatte zu erhalten, und ersetzt SDA1 mit dem Gerät
+   
 	`$ sudo blkid /dev/sda1 `
+	
 	- der UUID notieren
    13.5 Zum automatisch mounten des richtigen USB-Sticks wird die “fstab” mit NANO editiert
+   
 	`$ sudo nano /etc/fstab `
+	
    13.6 Am Ende der Datei die folgende Zeile einführen und mit UUID ersetzen
 	- nach der nächsten Neustart wird der USB-Stick unter /media/usb-hdd/ automatisch eingehängt
 	“ UUID=1C5638245637FCD8 /media/usb-hdd/ ntfs-3g permissions,defaults,auto ”
    13.7 Rebooten
+   
 	` 	`$ sudo reboot `
+	
 	- Tipp: Nach dem Reboot überprüfen, ob der USB-Stick über  /media/usb-hdd/ zugreifbar ist 
 
 
@@ -262,15 +279,26 @@ sudo sh -c "echo 'deb http://download.owncloud.org/download/repositories/stable/
    3. Datenbank einrichten
 	- Auf dem MySQL Server neue Datenbank einrichten
 	- die MySQL öffnen
+	
 	` sudo mysql -u root -p `
+	
    4. Benutzer erstellen
+   
 	` CREATE DATABASE owncloud; `
+	
    5. Noch einen Benutzer erstellen (Name: owncloud und eine sichere Passwort)
+   
 	` CREATE USER 'owncloud'@'localhost' IDENTIFIED BY 'SicheresPasswort'; 
+	
 	` GRANT ALL PRIVILEGES ON owncloud.* TO 'owncloud'@'localhost'; `
+	
    6. Das Remote Login für den root dezaktivieren
+   
 	` DELETE FROM mysql.user WHERE User='root' AND Host NOT IN ('localhost', '127.0.0.1', '::1'); `
+	
    7. Die MySQL Eingabe beenden
+   
+   
 	` FLUSH PRIVILEGES;
 	  exit; `
 
