@@ -448,22 +448,19 @@ SSLCertificateKeyFile /root/server.key
 
 
 
+
+
 ##17. OwnCloud Einrichten
 
 1. Ein Verzeichnis auf dem USB-Stick liegen und dessen Rechte anpassen 
 
-`sudo mkdir -p /media/usb-hdd/owncloud/data
-sudo chown -R www-data:www-data /media/usb-hdd/owncloud/data
-sudo chmod 0770 /media/usb-hdd/owncloud/data
+	`sudo mkdir -p /media/usb-hdd/owncloud/data
+	sudo chown -R www-data:www-data /media/usb-hdd/owncloud/data
+	sudo chmod 0770 /media/usb-hdd/owncloud/data
  
-sudo reboot`
+	sudo reboot`
 
-2.Die OwnCloud im Browser aufrüfen mit “ https://raspberrytips.ddns.net/owncloud“ (mit den angepassten Adresse)
-
-
-
-
-
+2.Die OwnCloud im Browser aufrüfen mit “ https://cloudspeicher.bfh.ch/owncloud“ (mit der angepassten Adresse)
 
   !- wenn das klappt, das heisst das OwnCloud erfolgreich installiert ist
   !- falls nicht klappt können aus verschiedenen Gründen sein:
@@ -507,11 +504,15 @@ Mit den folgenden Befehle:
 ![owncloud](https://cloud.githubusercontent.com/assets/21320216/19146318/3fb8caa2-8bb3-11e6-9536-79ac0221ab30.png)
 
 
-## 18.Smartphone und Desktop Client Apps(#18-smartphone-und-desktop-client-apps)
+
+
+## 18.Smartphone und Desktop Client Apps
 
 Um auf die eigene Cloud zuzugreifen, git es verschiedenen Möglichkeiten. Das Smartphone kann via iOS oder Android App zugreifen, der Desktop Rechner via Desktop Client oder über das Bekannte Webinterface mit einem beliebigen Browser.
 
 ![screen_shot_2016-10-06_at_10_24_07](https://cloud.githubusercontent.com/assets/21320216/19145904/7640824c-8bb1-11e6-84f8-8cc903d56226.jpg)
+
+
 
 
 ##19. Tunneling SSH over PageKite
