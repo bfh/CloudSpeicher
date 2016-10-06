@@ -150,9 +150,9 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 
 - Damit der Apache (Webserver) installiert werden kann, werden Nutzergruppen benötigt – ansonsten schlägt die Installation fehl.  Mit den folgenden Befehlen werden die Standardnutzergruppen für den Apachen anlegt:
 
-`sudo groupadd www-data
-
-sudo usermod -a -G www-data www-data`
+	 `sudo groupadd www-data
+	 
+	 sudo usermod -a -G www-data www-data`
 
 
 1. Apache2 Webserver installieren 
@@ -185,6 +185,7 @@ sudo usermod -a -G www-data www-data`
 
 
 ## 10. PHP Modul installieren und testen
+
 1. Installieren
 
 	`$ sudo apt-get install php5`
