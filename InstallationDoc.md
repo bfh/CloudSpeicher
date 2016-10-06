@@ -18,6 +18,8 @@
 14. [Owncloud installieren](#14-owncloud-installieren)
 15. [Webserver für OwnCloud mit SSL absichern](#15-webserver-für-owncloud-mit-ssl-absichern)
 16. [Webserver für OwnCloud konfigurieren](#16-Webserver-für-owncloud-konfigurieren)
+17. [OwnCloud Einrichten](17-owncloud-einrichten)
+18. [Smartphone und Desktop Client Apps](18-smartphone-und-desktop-client-apps)
 
 
 
@@ -146,7 +148,6 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 	`$ sudo shutdown -h now`
 
 
-
 ## 9. Apache2 Webserver für OwnCloud installieren und testen
 
 1. Apache2 Webserver installieren 
@@ -171,7 +172,6 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 	`$ cd /var/www/html
 	
 	 $ ls -al`
-
 
 
 ## 10. PHP Modul installieren und testen
@@ -247,7 +247,7 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 - den Zugriff nur auf das lokale Netz möglich zu sein
 - diese schritte sollte man unbedingt machen ansonsten ist die PhpMyAdmin Oberfläche aus dem internet erreichbar
 
-1. anmelden per ssh am pi
+1. Per ssh am pi  anmelden
 
 2. `sudo nano /etc/apache2/conf.d/phpmyadmin.conf  ( symlink auf /etc/phpmyadmin/apache.conf)`
 
@@ -282,8 +282,6 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 
 
 
-
-
 ## 13. [Datenspeicher konfigurieren und mounten](#Datenspeicher konfigurieren und mounten)
    13.1 Der Treiber installieren, damit NTFS Speichermedien eingebunden werden kann
    
@@ -315,7 +313,6 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 	` 	`$ sudo reboot `
 	
 	- Tipp: Nach dem Reboot überprüfen, ob der USB-Stick über  /media/usb-hdd/ zugreifbar ist 
-
 
 
 
@@ -413,7 +410,9 @@ SSLCertificateKeyFile /root/server.key
   8. SSL Verschlüsselung aktivieren && speichern && der Server neu starten
 
 `sudo a2ensite default-ssl.conf
+
 sudo a2enmod ssl
+
 sudo service apache2 force-reload`
 
   9. Die Konfiguration Nano editieren
@@ -433,12 +432,14 @@ SSLCertificateKeyFile /root/server.key
 </VirtualHost>
 
 2. SSL Verschlüsselung aktivieren und restarten
+
 `sudo a2enmod ssl
+
  sudo apache2ctl restart`
 
 
 
-###15. OwnCloud Einrichten
+###17. OwnCloud Einrichten
 
 1. Ein Verzeichnis auf dem USB-Stick liegen und dessen Rechte anpassen 
 
@@ -451,8 +452,8 @@ sudo reboot`
 2.Die OwnCloud im Browser aufrüfen mit “ https://raspberrytips.ddns.net/owncloud“ (mit den angepassten Adresse)
   !- wenn das klappt, das heisst das OwnCloud erfolgreich installiert ist
   !- falls nicht klappt können aus verschiedenen Gründen sein:
-     - entweder die IP-Adresse ist vom DynDNS Client nicht aktualisiert oder der Router reicht nicht richtig die Anfragen an den Raspberry Pi weiter
-  !- Im Problemfall ist es möglisch erstmal auch die interne Adresse des Pis aufzurufen und auf den Zugriff via Internet zu verzichten
+    - entweder die IP-Adresse ist vom DynDNS Client nicht aktualisiert oder der Router reicht nicht richtig die Anfragen an den Raspberry Pi weiter
+  ! - Im Problemfall ist es möglisch erstmal auch die interne Adresse des Pis aufzurufen und auf den Zugriff via Internet zu verzichten
 
 - https://raspberrypi/owncloud/  oder
 
@@ -488,6 +489,6 @@ sudo reboot`
 
 - nachdem ist es möglsih auf eigenen OwnCouud zu landen
 
-## 16.Smartphone und Desktop Client Apps
+## 18.Smartphone und Desktop Client Apps
 
 
