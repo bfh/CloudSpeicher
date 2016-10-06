@@ -18,8 +18,8 @@
 14. [Owncloud installieren](#14-owncloud-installieren)
 15. [Webserver für OwnCloud mit SSL absichern](#15-webserver-für-owncloud-mit-ssl-absichern)
 16. [Webserver für OwnCloud konfigurieren](#16-Webserver-für-owncloud-konfigurieren)
-17. [OwnCloud Einrichten](17-owncloud-einrichten)
-18. [Smartphone und Desktop Client Apps](18-smartphone-und-desktop-client-apps)
+17. [OwnCloud Einrichten](#17-owncloud-einrichten)
+18. [Smartphone und Desktop Client Apps](#18-smartphone-und-desktop-client-apps)
 
 
 
@@ -150,13 +150,25 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 
 ## 9. Apache2 Webserver für OwnCloud installieren und testen
 
+- Damit der Apache (Webserver) installiert werden kann, werden Nutzergruppen benötigt – ansonsten schlägt die Installation fehl.  Mit den folgenden Befehlen werden die Standardnutzergruppen für den Apachen anlegt:
+
+`sudo groupadd www-data
+
+sudo usermod -a -G www-data www-data`
+
+
 1. Apache2 Webserver installieren 
 
 	`$ sudo apt-get install apache2 -y`
 	
 2. Der WEB SERVER testen
+
  - http://localhost/
- - http://Raspberrys Pi`s Adress
+ 
+ - http://<IP-Adresse>/
+ 
+ It works!
+ 
  - die Raspberry Pi Adresse herausfinden: 
  
  `$ hostname -I`
@@ -283,40 +295,39 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 
 
 ## 13. [Datenspeicher konfigurieren und mounten](#Datenspeicher konfigurieren und mounten)
-   13.1 Der Treiber installieren, damit NTFS Speichermedien eingebunden werden kann
+    1. Der Treiber installieren, damit NTFS Speichermedien eingebunden werden kann
    
 	`$ sudo apt-get -y install ntfsprogs `
 	
-   13.2 Neue Ordner in Verzeichnis /media anlegen (hier wird später der Usb-Speichermedium eingebunden - ist als Mountpoint gennant)
+   2. Neue Ordner in Verzeichnis /media anlegen (hier wird später der Usb-Speichermedium eingebunden - ist als Mountpoint gennant)
    
 	`$ sudo mkdir /media/usb-hdd `	
 	
-   13.3 Die Log Ausgabe aktivieren, um herauszufinden welchem Gerät die Festplatte zugeordnet wird
+   3. Die Log Ausgabe aktivieren, um herauszufinden welchem Gerät die Festplatte zugeordnet wird
    
 	`$ tail –f /var/log/messages `
 	
      - es kann sein, dass die USB-Stick als `sda1` erkannt ist
-   13.4 Der folgende Befehl angeben, um die UUID der Festplatte zu erhalten, und ersetzt SDA1 mit dem Gerät
+   4. Der folgende Befehl angeben, um die UUID der Festplatte zu erhalten, und ersetzt SDA1 mit dem Gerät
    
 	`$ sudo blkid /dev/sda1 `
 	
 	- der UUID notieren
-   13.5 Zum automatisch mounten des richtigen USB-Sticks wird die “fstab” mit NANO editiert
+   5. Zum automatisch mounten des richtigen USB-Sticks wird die “fstab” mit NANO editiert
    
 	`$ sudo nano /etc/fstab `
 	
-   13.6 Am Ende der Datei die folgende Zeile einführen und mit UUID ersetzen
+   6. Am Ende der Datei die folgende Zeile einführen und mit UUID ersetzen
 	- nach der nächsten Neustart wird der USB-Stick unter /media/usb-hdd/ automatisch eingehängt
 	“ UUID=1C5638245637FCD8 /media/usb-hdd/ ntfs-3g permissions,defaults,auto ”
-   13.7 Rebooten
+   7. Rebooten
    
 	` 	`$ sudo reboot `
 	
 	- Tipp: Nach dem Reboot überprüfen, ob der USB-Stick über  /media/usb-hdd/ zugreifbar ist 
 
 
-
-## 14. [Owncloud installieren](#Owncloud installieren)
+## 14. Owncloud installieren
 
    1. Das OwnCloud Repository einfügen
 
@@ -439,7 +450,7 @@ SSLCertificateKeyFile /root/server.key
 
 
 
-###17. OwnCloud Einrichten
+##17. OwnCloud Einrichten
 
 1. Ein Verzeichnis auf dem USB-Stick liegen und dessen Rechte anpassen 
 
@@ -450,6 +461,12 @@ sudo chmod 0770 /media/usb-hdd/owncloud/data
 sudo reboot`
 
 2.Die OwnCloud im Browser aufrüfen mit “ https://raspberrytips.ddns.net/owncloud“ (mit den angepassten Adresse)
+
+
+
+
+
+
   !- wenn das klappt, das heisst das OwnCloud erfolgreich installiert ist
   !- falls nicht klappt können aus verschiedenen Gründen sein:
     - entweder die IP-Adresse ist vom DynDNS Client nicht aktualisiert oder der Router reicht nicht richtig die Anfragen an den Raspberry Pi weiter
@@ -470,25 +487,40 @@ Wichtig!
 Da das Datenverzeichnis geändert würde, müssen die Berechtigungen anpassen werden.
 Mit den folgenden Befehle:
 
-`sudo find /var/www/owncloud/ -type f -print0 | sudo xargs -0 chmod 0640
-sudo find /var/www/owncloud/ -type d -print0 | sudo xargs -0 chmod 0750
+	`sudo find /var/www/owncloud/ -type f -print0 | sudo xargs -0 chmod 0640
+	sudo find /var/www/owncloud/ -type d -print0 | sudo xargs -0 chmod 0750
  
-sudo chown -R root:www-data /var/www/owncloud/
-sudo chown -R www-data:www-data /var/www/owncloud/apps/
-sudo chown -R www-data:www-data /var/www/owncloud/config/
-sudo chown -R www-data:www-data /media/usb-hdd/owncloud/data/
-sudo chown -R www-data:www-data /var/www/owncloud/themes/
+	sudo chown -R root:www-data /var/www/owncloud/
+	sudo chown -R www-data:www-data /var/www/owncloud/apps/
+	sudo chown -R www-data:www-data /var/www/owncloud/config/
+	sudo chown -R www-data:www-data /media/usb-hdd/owncloud/data/
+	sudo chown -R www-data:www-data /var/www/owncloud/themes/
  
-sudo chown root:www-data /var/www/owncloud/.htaccess
-sudo chown root:www-data /media/usb-hdd/owncloud/data/.htaccess
+	sudo chown root:www-data /var/www/owncloud/.htaccess
+	sudo chown root:www-data /media/usb-hdd/owncloud/data/.htaccess
  
-sudo chmod 0644 /var/www/owncloud/.htaccess
-sudo chmod 0644 /media/usb-hdd/owncloud/data/.htaccess
+	sudo chmod 0644 /var/www/owncloud/.htaccess
+	sudo chmod 0644 /media/usb-hdd/owncloud/data/.htaccess
  
-sudo reboot`
+	sudo reboot `
 
 - nachdem ist es möglsih auf eigenen OwnCouud zu landen
 
+![owncloud](https://cloud.githubusercontent.com/assets/21320216/19146318/3fb8caa2-8bb3-11e6-9536-79ac0221ab30.png)
+
+
 ## 18.Smartphone und Desktop Client Apps
+
+Um auf die eigene Cloud zuzugreifen, git es verschiedenen Möglichkeiten. Das Smartphone kann via iOS oder Android App zugreifen, der Desktop Rechner via Desktop Client oder über das Bekannte Webinterface mit einem beliebigen Browser.
+
+![screen_shot_2016-10-06_at_10_24_07](https://cloud.githubusercontent.com/assets/21320216/19145904/7640824c-8bb1-11e6-84f8-8cc903d56226.jpg)
+
+
+##19. Tunneling SSH over PageKite
+
+SSH kann über PageKite getunnelt werden, so dass Sie Ihren SSH-Server von überall erreichbar sein kann, auch wenn es hinter NAT oder einer strengen Firewall ist.
+
+![image002](https://cloud.githubusercontent.com/assets/21320216/19147267/a3c913ae-8bb7-11e6-994e-68fc8b98fe2c.png)
+
 
 
