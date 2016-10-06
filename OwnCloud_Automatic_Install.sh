@@ -14,8 +14,7 @@
 #   Verbesserungsziele:
 #     → Pagekite integration
 #     → die Fragen und Bedingungen in Deutsch übersetzen und bearbeiten
-#     → 
-#   
+#     → die Links anpassen
 #   
 #   
 ############################################################################
