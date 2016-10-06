@@ -506,7 +506,7 @@ Mit den folgenden Befehle:
 
 
 
-## 18.Smartphone und Desktop Client Apps
+## 18. Smartphone und Desktop Client Apps
 
 Um auf die eigene Cloud zuzugreifen, git es verschiedenen Möglichkeiten. Das Smartphone kann via iOS oder Android App zugreifen, der Desktop Rechner via Desktop Client oder über das Bekannte Webinterface mit einem beliebigen Browser.
 
