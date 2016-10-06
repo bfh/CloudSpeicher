@@ -507,7 +507,7 @@ Mit den folgenden Befehle:
 ![owncloud](https://cloud.githubusercontent.com/assets/21320216/19146318/3fb8caa2-8bb3-11e6-9536-79ac0221ab30.png)
 
 
-## 18.Smartphone und Desktop Client Apps
+## 18.Smartphone und Desktop Client Apps(#18-smartphone-und-desktop-client-apps)
 
 Um auf die eigene Cloud zuzugreifen, git es verschiedenen Möglichkeiten. Das Smartphone kann via iOS oder Android App zugreifen, der Desktop Rechner via Desktop Client oder über das Bekannte Webinterface mit einem beliebigen Browser.
 
