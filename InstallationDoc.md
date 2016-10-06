@@ -242,6 +242,48 @@ Nach dem Reboot wir noch eine Paketaktualisierung mit folgenden Befehlen gemacht
 - Somit läuft phpMyAdmin auf deinem Raspberry Pi!
 
 
+! Wichtige Tipps ! 
+- ein sicheres Passwort zu wählen ist wichtig
+- den Zugriff nur auf das lokale Netz möglich zu sein
+- diese schritte sollte man unbedingt machen ansonsten ist die PhpMyAdmin Oberfläche aus dem internet erreichbar
+
+1. anmelden per ssh am pi
+
+2. `sudo nano /etc/apache2/conf.d/phpmyadmin.conf  ( symlink auf /etc/phpmyadmin/apache.conf)`
+
+3. Datei folgendermaßen anpassen :
+
+` <directory /usr/share/phpmyadmin>
+        options followsymlinks
+        directoryindex index.php
+        order deny,allow
+        deny from all
+        allow from 192.168.2.0/24  <- hier natürlich euer netzwerk rein
+        <ifmodule mod_php5.c> `
+
+4. Datei speichern
+5. Apache restarten 
+
+`/etc/init.d/apache2 restart `
+
+  - jetzt ist die phpmyadmin oberfläche nur noch aus dem lokalen netzwerk erreichbar.
+
+
+*** Test nicht erfolgreich???
+- falls der browser nichts anzeigt versuche das Problem mit folgendem Code zu beheben
+
+`ln -s /etc/phpmyadmin/apache.conf /etc/apache2/conf.d/phpmyadmin.conf`
+
+- nun noch die Änderungen neu laden und wie in Sßchritt 7 testen
+
+`/etc/init.d/apache2 reload`
+
+`sudo reboot`
+
+
+
+
+
 ## 13. [Datenspeicher konfigurieren und mounten](#Datenspeicher konfigurieren und mounten)
    13.1 Der Treiber installieren, damit NTFS Speichermedien eingebunden werden kann
    
@@ -334,5 +376,118 @@ sudo sh -c "echo 'deb http://download.owncloud.org/download/repositories/stable/
 	 $ sudo mv server.crt /root/server.crt `
 
 ## 16. Webserver für OwnCloud konfigurieren
+
+Version 1:
+  1.Das DocumentRoot anpassen ( um nicht immer “/owncloud” hinten an URL anhängen zu müssen )
+
+` sudo nano /etc/apache2/sites-available/000-default.conf `
+
+  2. Innerhalb der Datei das DocumentRoot von 
+
+`/var/www/html` 
+
+in folgenden Pfad ändern
+
+`DocumentRoot /var/www/owncloud`
+
+- Speichern mit CTRL+X und Y 
+
+  4. “html” Verzeichnis löschen
+
+	`sudo rm -rf /var/www/html/`
+
+  5. Die SSL Verschlüsselung mit Nano editieren
+
+`sudo nano /etc/apache2/sites-available/default-ssl.conf`
+
+  6. Die Pfade zu der generierten Datei anpassen
+
+`SSLCertificateFile /root/server.crt
+SSLCertificateKeyFile /root/server.key
+`
+  7. Innerhalb der Datei das DocumentRoot ändern
+
+`DocumentRoot: /var/www/owncloud`
+→ Speichern
+
+  8. SSL Verschlüsselung aktivieren && speichern && der Server neu starten
+
+`sudo a2ensite default-ssl.conf
+sudo a2enmod ssl
+sudo service apache2 force-reload`
+
+  9. Die Konfiguration Nano editieren
+
+`sudo nano /etc/apache2/sites-available/default`
+
+
+Version 2:
+1. Am Ende der Datei die folgende Konfiguration für OwnCloud Webseite einfügen && speichern
+
+`<VirtualHost *:443>
+DocumentRoot /var/www/owncloud
+ServerName raspberrytips.ddns.net
+SSLEngine on
+SSLCertificateFile /root/server.crt
+SSLCertificateKeyFile /root/server.key
+</VirtualHost>
+
+2. SSL Verschlüsselung aktivieren und restarten
+`sudo a2enmod ssl
+ sudo apache2ctl restart`
+
+
+
+###15. OwnCloud Einrichten
+
+1. Ein Verzeichnis auf dem USB-Stick liegen und dessen Rechte anpassen 
+
+`sudo mkdir -p /media/usb-hdd/owncloud/data
+sudo chown -R www-data:www-data /media/usb-hdd/owncloud/data
+sudo chmod 0770 /media/usb-hdd/owncloud/data
+ 
+sudo reboot`
+
+2.Die OwnCloud im Browser aufrüfen mit “ https://raspberrytips.ddns.net/owncloud“ (mit den angepassten Adresse)
+  !- wenn das klappt, das heisst das OwnCloud erfolgreich installiert ist
+  !- falls nicht klappt können aus verschiedenen Gründen sein:
+     - entweder die IP-Adresse ist vom DynDNS Client nicht aktualisiert oder der Router reicht nicht richtig die Anfragen an den Raspberry Pi weiter
+  !- Im Problemfall ist es möglisch erstmal auch die interne Adresse des Pis aufzurufen und auf den Zugriff via Internet zu verzichten
+
+- https://raspberrypi/owncloud/  oder
+
+- https://<IP-Adresse des RasPi>/owncloud/
+
+3. Konfigurtionkatalog des OwnClouds
+  - ein Admin Benutzer angeben
+  - eine feste Password
+  - Speicher und Datenbank auswählen und die Pfad des USB-Stick angeben z.B  `/media/usb-hdd/owncloud/data`
+  - Datenbank: MySQL
+
+
+Wichtig!
+Da das Datenverzeichnis geändert würde, müssen die Berechtigungen anpassen werden.
+Mit den folgenden Befehle:
+
+`sudo find /var/www/owncloud/ -type f -print0 | sudo xargs -0 chmod 0640
+sudo find /var/www/owncloud/ -type d -print0 | sudo xargs -0 chmod 0750
+ 
+sudo chown -R root:www-data /var/www/owncloud/
+sudo chown -R www-data:www-data /var/www/owncloud/apps/
+sudo chown -R www-data:www-data /var/www/owncloud/config/
+sudo chown -R www-data:www-data /media/usb-hdd/owncloud/data/
+sudo chown -R www-data:www-data /var/www/owncloud/themes/
+ 
+sudo chown root:www-data /var/www/owncloud/.htaccess
+sudo chown root:www-data /media/usb-hdd/owncloud/data/.htaccess
+ 
+sudo chmod 0644 /var/www/owncloud/.htaccess
+sudo chmod 0644 /media/usb-hdd/owncloud/data/.htaccess
+ 
+sudo reboot`
+
+- nachdem ist es möglsih auf eigenen OwnCouud zu landen
+
+## 16.Smartphone und Desktop Client Apps
 
 
