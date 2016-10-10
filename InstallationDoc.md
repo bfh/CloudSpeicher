@@ -1,24 +1,25 @@
 #Inhaltsverzeichnis
 		
 1. [Raspian installieren](#1raspian-installieren)
-2. [Der erste Login und der Zugriff auf die GUI / das Grafische User Interface](2#der-erste-login-und-der-zugriff-auf-das-grafische-user-interface)
+2. [Der erste Login und der Zugriff auf das Grafische User Interface(#2-der-erste-login-und-der-zugriff-auf-das-grafische-user-interface
 3. [Via Konsole mit SSH Verbinden](#3-via-konsole-mit-ssh-verbinden)
 4. [System aktualisieren](#4-system-aktualisieren)
-5. [Apache2 Webserver für OwnCloud installieren und testen](#5--apache2-webserver-für-owncloud-installieren-und-testen
-6. [PHP Modul installieren und testen](#6php--modul-installieren-und-testen)
+5. [Apache2 Webserver für OwnCloud installieren und testen](#5--apache2-webserver-für-owncloud-installieren-und-testen)
+6. [PHP Modul installieren und testen](#6--php-modul-installieren-und-testen)
 7. [MySQL installieren](#7-mysql-installieren)
 8. [phpMyAdmin instalieren](#8-phpmyadmin-instalieren)
 
+
 #Installation von OwnCloud
 
-1. [Datenspeicher konfigurieren und mounten (USB-Stick)](#1datenspeicher-konfigurieren-und-mounten-usb-stick)
-2. [Owncloud installieren](#2owncloud-installieren) 
-3. [Datenbank einrichten](#3datenbank-einrichten)
+1. [Datenspeicher konfigurieren und mounten (USB-Stick)(#1-datenspeicher-konfigurieren-und-mounten-usb-stick
+2. [Owncloud installieren](#2-owncloud-installieren)
+3. [Datenbank einrichten](#3-datenbank-einrichten)
 4. [Webserver für OwnCloud mit SSL absichern](#4-webserver-für-owncloud-mit-ssl-absichern)
-5. [Webserver für OwnCloud konfigurieren](#5webserver-für-owncloud-konfigurieren)
-6. [OwnCloud einrichten](#6owncloud-einrichten)
-7. [Smartphone und Desktop Client Apps](#7smartphone-und-desktop-client-apps)
-8. [Tunneling SSH over PageKite](#6tunneling-ssh-via-pagekite)
+5. [Webserver für OwnCloud konfigurieren](#5-webserver-für-owncloud-konfigurieren)
+6. [OwnCloud einrichten](#6-owncloud-einrichten)
+7. [Smartphone und Desktop Client Apps](#7-smartphone-und-desktop-client-apps)
+8. [Tunneling SSH via PageKite](#8-tunneling-ssh-via-pagekite)
 
 
 
