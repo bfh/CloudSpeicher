@@ -1,7 +1,7 @@
 #Inhaltsverzeichnis
 		
 1. [Raspian installieren](#1raspian-installieren)
-2. [Der erste Login und der Zugriff auf das Grafische User Interface(#2-der-erste-login-und-der-zugriff-auf-das-grafische-user-interface
+2. [Der erste Login und der Zugriff auf das Grafische User Interface(#2-der-erste-login-und-der-zugriff-auf-das-grafische-user-interface)
 3. [Via Konsole mit SSH Verbinden](#3-via-konsole-mit-ssh-verbinden)
 4. [System aktualisieren](#4-system-aktualisieren)
 5. [Apache2 Webserver für OwnCloud installieren und testen](#5--apache2-webserver-für-owncloud-installieren-und-testen)
@@ -20,6 +20,8 @@
 6. [OwnCloud einrichten](#6-owncloud-einrichten)
 7. [Smartphone und Desktop Client Apps](#7-smartphone-und-desktop-client-apps)
 8. [Tunneling SSH via PageKite](#8-tunneling-ssh-via-pagekite)
+
+
 
 
 
@@ -59,6 +61,7 @@ Hierbei sind verschiedene Einstellungen möglisch:
 Standardmäßig ist nach der Installation von Raspbian bereits ein Benutzer eingerichtet. 
 
 `Benutzername: pi
+
 Passwort: raspberry`
 
 
@@ -66,23 +69,21 @@ Passwort: raspberry`
 
 1. Mit dem Kommando “  Ifconfig ” auf der Konsole die IP-Adresse auslesen 
 
-2. SSH Verbindung aus dem Pc machen 
+2. SSH Verbindung aus dem PC machen 
 
 	`$ ssh username@<IP-Adresse>  ( Beispiel: ssh pi@147.107.87.17 )
 
-	` $ sudo reboot`
+	 $ sudo reboot`
 
 
 ## 4. System aktualisieren
 
-
-	Nachdem die IP-Adresse oder den Hostnamen (RaspberryPi) in der Terminal eingegeben wurde, sollte sich ein Terminal öffnen das nach einem Benutzer und Passwort fragt
-
-	- dort mit den bekannten Daten (Standard : pi & raspberry) einloggen 
+  Nachdem die IP-Adresse oder den Hostnamen (RaspberryPi) in der Terminal eingegeben wurde, sollte sich ein Terminal öffnen das nach einem Benutzer und Passwort fragt
+  
+- Dort mit den bekannten Daten (Standard : pi & raspberry) einloggen 
 
 Mit aktuellster Software und Firmware versorgen
-
-	- Die folgend Befehle werden angegeben um den Raspberry Pi zu aktualisieren 
+- Die folgend Befehle werden angegeben um den Raspberry Pi zu aktualisieren 
 
 	`$ sudo apt-get update`
 	
@@ -93,7 +94,7 @@ Mit aktuellster Software und Firmware versorgen
 
 ##5.  Apache2 Webserver für OwnCloud installieren und testen
 
-- Damit der Apache (Webserver) installiert werden kann, werden Nutzergruppen benötigt – ansonsten schlägt die Installation fehl.  Mit den folgenden Befehlen werden die Standardnutzergruppen für den Apachen anlegt:
+- Damit der Apache (Webserver) installiert werden kann, werden Nutzergruppen benötigt – ansonsten schlägt die Installation Fehler.  Mit den folgenden Befehlen werden die Standardnutzergruppen für den Apachen angelegt:
 
 	 `sudo groupadd www-data
 	 
@@ -125,7 +126,7 @@ Mit aktuellster Software und Firmware versorgen
 
 - Hinweis: Das Verzeichnis war `/ var / www` in Raspbian Wheezy ist aber jetzt `/ var / www / html` in Raspbian Jessie
 
-- Navigieren zu diesem Verzeichnis im Terminal 
+- Zu diesem Verzeichnis im Terminal surfen
 
 	`$ cd /var/www/html
 	
@@ -133,14 +134,14 @@ Mit aktuellster Software und Firmware versorgen
 
 
 
+
 ##6.  PHP Modul installieren und testen 
 
 1. Installieren
 
-	`$ sudo apt-get install php5 libapache2-mod-php5 -y`  https://www.raspberrypi.org/documentation/remote-access/web-server/apache.md
-
-2. Installation testen
-- Das Verzeichnis wechseln (/var/www)
+	`$ sudo apt-get install php5 libapache2-mod-php5 -y`
+	
+2. Das Verzeichnis wechseln (/var/www)
 
 	`$ cd /var/www`
 
@@ -166,6 +167,7 @@ Mit aktuellster Software und Firmware versorgen
 
 
 
+
 ##7. MySQL installieren 
 
 1. Root Rechte holen
@@ -179,7 +181,6 @@ Mit aktuellster Software und Firmware versorgen
 	
 3. Passwort festlegen
 
-Bild währen der Installation 
 4. Neustart
 
 	`$ sudo reboot`
@@ -197,8 +198,6 @@ Bild währen der Installation
 	`$ apt-get install libapache2-mod-auth-mysql php5-mysql phpmyadmin`
 
 3. phpMyAdmin auf Apache konfigurieren
-
-Bild während der Installation
 
  	 "apache2" auswählen
 
