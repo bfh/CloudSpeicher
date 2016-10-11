@@ -28,13 +28,13 @@
 
 1. Raspbian mithilfe der Installer  NOOBS Lite installieren.
 
-2.  SD-Karte (mindesten 8 GB gross) mit Disk Utiliy formatieren (FAT32). Die SD-Karte wird in SD Card Reader eingesteckt und mit dem PC verbunden
+2.  SD-Karte (min. 8 GB ) mit Disk Utiliy formatieren (FAT32). Die SD-Karte wird in SD Card Reader eingesteckt und mit dem PC verbunden
 
 3.  NOOBS Like (www.raspberrypi.org/downloads) herunterladen und die ZIP Datei entpacken. Wir verwenden ein Network-Installer
 
 4. Die Dateien, die sich in der heruntergeladenen ZIP-Datei befinden, auf die SD-Karte kopieren
 
-5. Die SD-Karte in den Raspberry Pi stecken und diesen mit einem LAN-Kabel verbinden (+ Bildschirm via HDMI, USB Maus, USB Tastatur und der USB Netzteil )
+5. Die SD-Karte in den Raspberry Pi einstecken und diese mit einem LAN-Kabel verbinden (+ Bildschirm via HDMI, USB Maus, USB Tastatur und der USB Netzteil )
 
 6. Der Raspberry Pi mit der Speicherkarte starten und " Raspbian " auswählen
 
@@ -461,7 +461,7 @@ Mit den folgenden Befehle:
 
 Um auf die eigene Cloud zuzugreifen, git es verschiedenen Möglichkeiten. Das Smartphone kann via iOS oder Android App zugreifen, der Desktop Rechner via Desktop Client oder über das Bekannte Webinterface mit einem beliebigen Browser.
 
-[desktopapp](https://cloud.githubusercontent.com/assets/21320216/19246178/57e2d418-8f25-11e6-8c32-0311ec18e59e.jpg)
+![desktopapp](https://cloud.githubusercontent.com/assets/21320216/19277168/1a097da4-8fd9-11e6-98b7-a26ceea58442.jpg)
 
 
 ##8. Tunneling SSH via PageKite
