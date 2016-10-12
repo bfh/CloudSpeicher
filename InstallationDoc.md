@@ -487,8 +487,7 @@ Um auf die eigene Cloud zuzugreifen, gibt es verschiedenen Möglichkeiten. Das S
 
 SSH kann über PageKite getunnelt werden, so dass Sie Ihren SSH-Server von überall erreichbar sein kann, auch wenn es hinter NAT oder einer strengen Firewall ist.
 
-![image002](https://cloud.githubusercontent.com/assets/21320216/19147267/a3c913ae-8bb7-11e6-994e-68fc8b98fe2c.png)
-
+![desktopapp](https://cloud.githubusercontent.com/assets/21320216/19305382/e4d4af30-9070-11e6-8021-7f109801ca9c.jpg)
 
 ###Installationsanleitung
 
