@@ -1,25 +1,27 @@
 #Inhaltsverzeichnis
 		
-1. [Raspian installieren](#1raspian-installieren)
+1. [Raspian installieren](#1-raspian-installieren)
 2. [Grundeinrichtung System, Tastatur und Sprache](#2-grundeinrichtung-system-tastatur-und-sprache)
-3. [Der erste Login Grafische User Interface](3#der-erste-login-und-der-auf-die-grafische-user-interface)
-4. [Via Konsole mit SSH Verbinden](#3via-konsole-mit-ssh-verbinden)
-5. [System aktualisieren](#4-system-aktualisieren)
-6. [Apache2 Webserver für OwnCloud installieren und testen](#5-apache2-webserver-f%C3%BCr-owncloud-installieren-und-testen)
-7. [PHP Modul installieren und testen](#6php-modul-installieren-und-testen)
+3. [Der erste Login Grafische User Interface](#3-der-erste-login-grafische-user-interface)
+4. [Via Konsole mit SSH Verbinden](#3-via-konsole-mit-ssh-verbinden)
+5. [System aktualisieren](#5-system-aktualisieren)
+6. [Apache2 Webserver für OwnCloud installieren und testen](#6--apache2-webserver-für-owncloud-installieren-und-testen)
+7. [PHP Modul installieren und testen](#7--php-modul-installieren-und-testen)
 8. [MySQL installieren](#7-mysql-installieren)
-9. [phpMyAdmin instalieren](#8-phpmyadmin-instalieren)
+9. [phpMyAdmin instalieren](#9-phpmyadmin-instalieren)
+
+https://github.com/bfh/CloudSpeicher/blob/master/InstallationDoc.md
 
 #Installation von OwnCloud
 
-1. [Datenspeicher konfigurieren und mounten USB-Stick](#1datenspeicher-konfigurieren-und-mounten-usb-stick)
-2. [Owncloud installieren](#2owncloud-installieren)
-3. [Datenbank einrichten](#3datenbank-einrichten)
-4. [Webserver für OwnCloud mit SSL absichern](#4webserver-für-owncloud-mit-ssl-absichern)
-5. [Webserver für OwnCloud konfigurieren](#5webserver-für-owncloud-konfigurieren)
-6. [OwnCloud einrichten](#6owncloud-einrichten)
-7. [Smartphone und Desktop Client Apps](#7smartphone-und-desktop-client-apps)
-8. [Tunneling SSH over PageKite](#6tunneling-ssh- via-pagekite)
+1. [Datenspeicher konfigurieren und mounten USB-Stick](#1-datenspeicher-konfigurieren-und-mounten-usb-stick)
+2. [Owncloud installieren](#2-owncloud-installieren)
+3. [Datenbank einrichten](3-datenbank-einrichten)
+4. [Webserver für OwnCloud mit SSL absichern](#4-webserver-für-owncloud-mit-ssl-absichern)
+5. [Webserver für OwnCloud konfigurieren](5-webserver-für-owncloud-konfigurieren)
+6. [OwnCloud einrichten](#6-owncloud-einrichten)
+7. [Smartphone und Desktop Client Apps](#7-smartphone-und-desktop-client-apps)
+8. [Tunneling SSH over PageKite](#8-tunneling-ssh-via-pagekite)
 
 
 
@@ -179,7 +181,7 @@ Passwort: raspberry`
 
 
 
-##8. MySQL 
+##8. MySQL installieren
 
 1. Root Rechte holen
 
@@ -200,7 +202,7 @@ Passwort: raspberry`
 
 
 
-##9. phpMyAdmin instalieren http://www.forum-raspberrypi.de/Thread-tutorial-raspberry-pi-als-webserver-phpmyadmin-installation
+##9. phpMyAdmin instalieren 
 
 1. Root Rechte holen
 
