@@ -490,24 +490,25 @@ SSH kann über PageKite getunnelt werden, so dass Sie Ihren SSH-Server von über
 ![image002](https://cloud.githubusercontent.com/assets/21320216/19147267/a3c913ae-8bb7-11e6-994e-68fc8b98fe2c.png)
 
 
-### Add our repository to `/etc/apt/sources.list`
+###Installationsanleitung
+
+#### Add our repository to `/etc/apt/sources.list`
 
 	`echo deb http://pagekite.net/pk/deb/ pagekite main | sudo tee -a /etc/apt/sources.list`
 
-### Add the PageKite packaging key to your key-ring
+#### Add the PageKite packaging key to your key-ring
 
 	`sudo apt-key adv --recv-keys --keyserver keys.gnupg.net AED248B1C7B2CAC3`
 
-### Refresh your package sources by issuing
+#### Refresh your package sources by issuing
 
 	`sudo apt-get update`
 
-### Install pagekite !
+#### Install pagekite !
 
 	`sudo apt-get install pagekite`
 
+	
 
-2.	
-
-`$ pagekite 80 yourname.pagekite.me`
+`$ pagekite 80 yourname.pagekite.me` ➠ Access http://yourname.pagekite.me/ from anywhere!
 
