@@ -3,22 +3,22 @@
 1. [Raspian installieren](#1-raspian-installieren)
 2. [Grundeinrichtung System, Tastatur und Sprache](#2-grundeinrichtung-system-tastatur-und-sprache)
 3. [Der erste Login Grafische User Interface](#3-der-erste-login-grafische-user-interface)
-4. [Via Konsole mit SSH Verbinden](#3-via-konsole-mit-ssh-verbinden)
+4. [Via Konsole mit SSH verbinden](#4-via-konsole-mit-ssh-verbinden)
 5. [System aktualisieren](#5-system-aktualisieren)
 6. [Apache2 Webserver für OwnCloud installieren und testen](#6--apache2-webserver-für-owncloud-installieren-und-testen)
 7. [PHP Modul installieren und testen](#7--php-modul-installieren-und-testen)
-8. [MySQL installieren](#7-mysql-installieren)
+8. [MySQL installieren](#8-mysql-installieren)
 9. [phpMyAdmin instalieren](#9-phpmyadmin-instalieren)
 
-https://github.com/bfh/CloudSpeicher/blob/master/InstallationDoc.md
+
 
 #Installation von OwnCloud
 
 1. [Datenspeicher konfigurieren und mounten USB-Stick](#1-datenspeicher-konfigurieren-und-mounten-usb-stick)
 2. [Owncloud installieren](#2-owncloud-installieren)
-3. [Datenbank einrichten](3-datenbank-einrichten)
+3. [Datenbank einrichten](#3-datenbank-einrichten)
 4. [Webserver für OwnCloud mit SSL absichern](#4-webserver-für-owncloud-mit-ssl-absichern)
-5. [Webserver für OwnCloud konfigurieren](5-webserver-für-owncloud-konfigurieren)
+5. [Webserver für OwnCloud konfigurieren](#5-webserver-für-owncloud-konfigurieren)
 6. [OwnCloud einrichten](#6-owncloud-einrichten)
 7. [Smartphone und Desktop Client Apps](#7-smartphone-und-desktop-client-apps)
 8. [Tunneling SSH over PageKite](#8-tunneling-ssh-via-pagekite)
@@ -75,7 +75,7 @@ Standardmäßig ist nach der Installation von Raspbian bereits ein Benutzer eing
 Passwort: raspberry`
 
 
-##4. Via Konsole mit SSH Verbinden
+##4. Via Konsole mit SSH verbinden
 
 1.	Mit dem Kommando “  Ifconfig ” auf der Konsole die „inet addr“ auflesen 
 
@@ -490,19 +490,19 @@ SSH kann über PageKite getunnelt werden, so dass Sie Ihren SSH-Server von über
 ![image002](https://cloud.githubusercontent.com/assets/21320216/19147267/a3c913ae-8bb7-11e6-994e-68fc8b98fe2c.png)
 
 
-# Add our repository to `/etc/apt/sources.list`
+### Add our repository to `/etc/apt/sources.list`
 
 	`echo deb http://pagekite.net/pk/deb/ pagekite main | sudo tee -a /etc/apt/sources.list`
 
-# Add the PageKite packaging key to your key-ring
+### Add the PageKite packaging key to your key-ring
 
 	`sudo apt-key adv --recv-keys --keyserver keys.gnupg.net AED248B1C7B2CAC3`
 
-# Refresh your package sources by issuing
+### Refresh your package sources by issuing
 
 	`sudo apt-get update`
 
-# Install pagekite !
+### Install pagekite !
 
 	`sudo apt-get install pagekite`
 
