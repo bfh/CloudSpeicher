@@ -479,15 +479,13 @@ Mit den folgenden Befehle:
 
 Um auf die eigene Cloud zuzugreifen, gibt es verschiedenen Möglichkeiten. Das Smartphone kann via iOS oder Android App zugreifen, der Desktop Rechner via Desktop Client oder über das Bekannte Webinterface mit einem beliebigen Browser.
 
-[desktopapp](https://cloud.githubusercontent.com/assets/21320216/19246178/57e2d418-8f25-11e6-8c32-0311ec18e59e.jpg)
-
-
+[desktopapp](https://cloud.githubusercontent.com/assets/21320216/19305382/e4d4af30-9070-11e6-8021-7f109801ca9c.jpg)
 
 ##8. Tunneling SSH via PageKite
 
 SSH kann über PageKite getunnelt werden, so dass Sie Ihren SSH-Server von überall erreichbar sein kann, auch wenn es hinter NAT oder einer strengen Firewall ist.
 
-![desktopapp](https://cloud.githubusercontent.com/assets/21320216/19305382/e4d4af30-9070-11e6-8021-7f109801ca9c.jpg)
+![image002](https://cloud.githubusercontent.com/assets/21320216/19305446/3604255c-9071-11e6-96f1-560f7d925f09.png)
 
 ###Installationsanleitung
 
