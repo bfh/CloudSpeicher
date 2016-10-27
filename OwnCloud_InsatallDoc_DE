@@ -35,7 +35,7 @@ echo_error () {
 is_installed () {
 	#Check if a package is installed (More information: https://askubuntu.com/questions/319307/reliably-check-if-a-package-is-installed-or-not)
 	if dpkg --get-selections | grep -q "^$1[[:space:]]*install$" >/dev/null; then
-		echo_error "$1 is already installed"
+		echo_error "$1 ist bereit installiert"
 		exit 1
 	fi
 }
