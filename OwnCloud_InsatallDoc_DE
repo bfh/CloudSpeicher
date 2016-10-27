@@ -1,0 +1,378 @@
+#!/bin/bash
+
+############################################################################
+#
+#    Created by: Michael Wiesing
+#    Modified by: Birla Ioana Roxana  
+#  
+#    Free Software: GNU General Public License 
+#    Source: (https://github.com/michaelwiesing/Owncloud-Auto-Setup-for-Raspberry-Pi-2/blob/master/setup_owncloud.sh)
+#    
+############################################################################
+
+
+whiptail --title "Info Box" --msgbox "Ein Skript für automatisierte owncloud Installation auf raspbian oder debian in Version 8 alias jessie mit einigen zusätzlichen Eigenscaften.Copyright (C) 2015 Michael Wiesing" 10 78
+
+
+#Some bash script optimization for robustness (More information: www.davidpashley.com/articles/writing-robust-shell-scripts/)
+#Break if the script uses unset variables
+set -o nounset
+#Break if a command has a non-true return value
+set -o errexit
+
+echo_info () {
+	echo "--------------------------------------"
+	echo "| INFO: $1"
+	echo "--------------------------------------"
+}
+
+echo_error () {
+	echo "--------------------------------------"
+	echo "| ERROR: $1"
+	echo "--------------------------------------"
+}
+
+is_installed () {
+	#Check if a package is installed (More information: https://askubuntu.com/questions/319307/reliably-check-if-a-package-is-installed-or-not)
+	if dpkg --get-selections | grep -q "^$1[[:space:]]*install$" >/dev/null; then
+		echo_error "$1 is already installed"
+		exit 1
+	fi
+}
+
+check_not_installed () {
+
+	#echo_info "Check if some package is already installed. If this is the case the script stops because it could not be performed without risc."
+whiptail --title "Info Box" --msgbox "Überprüfen Sie, ob ein Paket bereits installiert ist. Wenn dies der Fall ist, stoppt das Skript, da es nicht ohne Risiko ausgeführt werden konnte." 8 78
+
+
+	is_installed apache2
+	is_installed mysql-server-5.5
+	is_installed owncloud
+	is_installed fail2ban 
+
+}
+
+check_root () {
+	if [ "$(id -u)" != "0" ]; then
+whiptail --title "Error Box" --msgbox "Das Skript muss als root Benutzer aufgerufen werden!" 8 78
+
+		exit 1
+	fi
+}
+
+install_owncloud () {
+
+	cd /tmp
+
+	#Automatic installation of owncloud (More information: https://software.opensuse.org/download/package?project=isv:ownCloud:community&package=owncloud)
+
+	#echo_info "Add package repository"
+	whiptail --title "Error Box" --msgbox "Paket-Repository hinzufügen!" 10 78
+
+	echo 'deb http://download.owncloud.org/download/repositories/stable/Debian_8.0/ /' >> /etc/apt/sources.list.d/owncloud.list
+
+	wget -nv https://download.owncloud.org/download/repositories/stable/Debian_8.0/Release.key -O Release.key
+apt-key add - < Release.key 
+	rm Release.key	
+	
+	#echo_info "Install owncloud"
+	whiptail --title "Info Box" --msgbox "OwnCloud installieren" 10 78	
+
+
+	#Because a dependency the package mysql-server-5.5 is installed too. During the installation a prompt ask for the root password. The next lines set it with the value of the variable. (More information: http://www.microhowto.info/howto/perform_an_unattended_installation_of_a_debian_package.html)
+	echo "mysql-server-5.5 mysql-server/root_password password $mysqlRootPw" | debconf-set-selections
+	echo "mysql-server-5.5 mysql-server/root_password_again password $mysqlRootPw" | debconf-set-selections
+
+	apt-get update
+	apt-get --assume-yes install owncloud
+
+}
+
+create_mysql_db () {
+
+	#echo_info "Create mysql database for owncloud"
+	whiptail --title "Info Box" --msgbox "Erstellen Sie mysql-Datenbank für OwnCloud"
+
+	#Create a new database and user for owncloud (More information: http://www.bluepiccadilly.com/2011/12/creating-mysql-database-and-user-command-line-and-bash-script-automate-process)
+	mysql=`which mysql`
+	  
+	Q1="ERSTELLEN SIE DATABASE, WENN NICHT EXISTIERT BEREIT $ocDb;"
+	Q2="GARANTIEREN BENUTZUNG AUF *.* ZU $ocDbUser@localhost IDENTIFIED BY '$ocDbUserPw';"
+	Q3="GRANT ALLE PRIVILEGES AUF $ocDb.* TO $ocDbUser@localhost;"
+	Q4="FLUSH PRIVILEGES;"
+	SQL="${Q1}${Q2}${Q3}${Q4}"
+	 
+	$mysql -uroot -p$mysqlRootPw -e "$SQL"
+
+}
+
+patch_apache_filesize () {
+
+	#echo_info "Patch apache configuration"
+	whiptail --title "Info Box" --msgbox "Patch-Apache-Konfiguration"
+	
+	#Patch filesize in the htaccess (More Information: http://blog.webernetz.net/2015/07/15/yet-another-owncloud-installation-guide/)
+	sed -i "s/php_value upload_max_filesize .*/php_value upload_max_filesize $maxFileSize/" /var/www/owncloud/.htaccess
+	sed -i "s/php_value post_max_size .*/php_value post_max_size $maxFileSize/" /var/www/owncloud/.htaccess
+	sed -i "s/php_value memory_limit .*/php_value memory_limit $maxFileSize/" /var/www/owncloud/.htaccess
+	
+	/etc/init.d/apache2 restart
+}
+
+configure_owncloud () {
+
+	#echo_info "Configure owncloud"
+	whiptail --title "Info Box" --msgbox "OwnCloud configurieren"
+	
+	#The data dir should not be under /var/www for security reasons, so the dir must be created (More information: https://doc.owncloud.org/server/8.1/admin_manual/configuration_server/harden_server.html)
+	mkdir $ocDataDir
+	chown -R ${htuser}:${htgroup} ${ocDataDir}/
+
+	#Use the cli for first configuration (More information: https://doc.owncloud.org/server/8.1/admin_manual/installation/command_line_installation.html)
+	cd /var/www/owncloud
+	sudo -u $htuser php occ maintenance:install --database "mysql" --database-name "$ocDb"  --database-user "$ocDbUser" --database-pass "$ocDbUserPw" --admin-user "$ocAdminUser" --admin-pass "$ocAdminUserPw" --data-dir "$ocDataDir"
+	
+		#Add the hostname and ip to the trusted domains, so that it could be reached from outside (More Information: https://doc.owncloud.org/server/8.1/admin_manual/installation/installation_wizard.html?highlight=trusted_domains#label-trusted-domains)
+	sed -i "/.*0 => 'localhost',/a \\    1 => '$hostname',\n    2 => '$ip'," /var/www/owncloud/config/config.php
+
+	/etc/init.d/apache2 restart
+
+}
+
+install_fail2ban () {
+
+	#echo_info "Install fail2ban"
+	whiptail --title "Info Box" --msgbox "fail2ban installieren"
+	
+	apt-get --assume-yes install fail2ban
+	
+	#First configure the owncloud logfile
+	logFileMasked=$(echo $logFile | sed 's/\//\\\//g')
+	logTimezoneMasked=$(echo $logTimeZone | sed 's/\//\\\//g')
+	sed -i "s/  'logtimezone' => 'UTC',/  'logtimezone' => '$logTimezoneMasked',\n  'logfile' => '$logFileMasked',\n  'loglevel' => '2',/" /var/www/owncloud/config/config.php
+
+	touch $logFile
+	chown ${htuser}:${htgroup} $logFile
+
+	#Now configure fail2ban (More Information: http://www.rojtberg.net/711/secure-owncloud-server/, https://got-tty.org/archives/owncloud-6-sicherheit-durch-fail2ban.html)
+	echo -e "[Definition]\nfailregex={\"app\":\"core\",\"message\":\"Login failed: user '.*' , wrong password, IP:<HOST>\",\"level\":2,\"time\":\".*\"}\n          {\"app\":\"core\",\"message\":\"Login failed: '.*' \(Remote IP: '<HOST>', X-Forwarded-For: '.*'\)\",\"level\":2,\"time\":\".*\"}\n          {\"reqId\":\".*\",\"remoteAddr\":\"<HOST>\",\"app\":\"core\",\"message\":\"Login failed: .*\",\"level\":2,\"time\":\".*\"}" > /etc/fail2ban/filter.d/owncloud.conf
+
+	echo -e "[owncloud]\nenabled  = true\nfilter   = owncloud\nport     = http,https\nmaxretry = $maxRetry\nlogpath  = $logFile" >> /etc/fail2ban/jail.local
+
+	/etc/init.d/fail2ban restart
+}
+
+enable_apache_ssl () {
+	
+	#echo_info "Enable and compel apache ssl with default self-signed certifiacte of debian"
+	whiptail --title "Info Box" --msgbox "Aktivieren und zwingen apache ssl mit Standard-selbst-signierten Zertifikat auf Debian"
+
+	#Uses the default self-signed certificate of debian (More information: https://doc.owncloud.org/server/8.1/admin_manual/installation/source_installation.html#enabling-ssl)
+	a2enmod ssl
+	a2ensite default-ssl
+	
+	#Force https for every connection (More information: https://doc.owncloud.org/server/8.1/admin_manual/configuration_server/harden_server.html)
+	a2enmod headers
+	sed -i "/.*<VirtualHost.*/a \\\tServerName $hostname\n\tRedirect permanent \/ https:\/\/$hostname\/" /etc/apache2/sites-available/000-default.conf
+	sed -i "/.*<VirtualHost.*/a \\\t\tServerName $hostname\n\t\tHeader always add Strict-Transport-Security \"max-age=15768000\"" /etc/apache2/sites-available/default-ssl.conf
+	
+	/etc/init.d/apache2 restart
+}
+
+enable_apc_cache () {
+
+	#echo_info "Enable apc cache"
+	whiptail --title "Info Box" --msgbox "app cache einschalten"
+
+	#Install and configure apcu (More information: https://owncloud.org/blog/making-owncloud-faster-through-caching/)
+	apt-get --assume-yes install php-apc
+	sed -i "s/);/  'memcache.local' => '\\\OC\\\Memcache\\\APCu',\n);/" /var/www/owncloud/config/config.php
+	
+	/etc/init.d/apache2 restart
+}
+
+#Read in the variables in an interacive mode. Too make it a little more comfortable, the following functions need to be defined.
+
+#Read a value and set the default value as input (More Information: http://stackoverflow.com/questions/2642585/read-a-variable-in-bash-with-a-default-value)
+read_value () {
+	unset value
+	read -e -i $1 value
+}
+
+#Hide the input and mask it with stars (More Information: http://stackoverflow.com/questions/1923435/how-do-i-echo-stars-when-reading-password-with-read) (Part of the read_pw function)
+read_pw_loop_masked () {
+	unset password
+	while IFS= read -p "$prompt" -r -s -n 1 char
+	do
+    	if [[ $char == $'\0' ]]
+	    then
+    	    break
+    	fi
+	    prompt='*'
+	    password+="$char"
+	done
+	echo
+}
+
+#Ask for the password two times (Part of the read_pw function)
+read_pw_loop_compare () {
+	prompt="Password eingeben:"
+	read_pw_loop_masked
+	password1=$password
+	prompt="Password erneut eingeben:"
+	read_pw_loop_masked
+	password2=$password
+}
+
+#Loop the password question until the two values match (Part of the read_pw function)
+read_pw_loop () {
+	read_pw_loop_compare
+	while [ "$password1" != "$password2" ] ; do
+		#echo "Please retype, because the passwords did not match."
+	#echo "Wiederholen Sie bitte die Eingabe, da die Passwörter nicht übereinstimmen."
+	whiptail --title "Info Box" --msgbox "Wiederholen Sie bitte die Eingabe, da die Passwörter nicht übereinstimmen." 10 78
+	
+		read_pw_loop_compare	
+	done
+	password=$password1
+}
+
+#Main function for reading a password
+read_pw () {
+	echo $*
+	read_pw_loop
+	
+}
+
+ask_for_values () {
+	#echo_info "The script now ask for some values that are necessary for the installation."
+	whiptail --title "Info Box" --msgbox "Das Skript fragt nun nach einigen Werten, die für die Installation notwendig sind." 10 78
+
+	#You can customize the default values of the variables here or set a static value
+
+	#Hostname and IP (the command retrieve this information automatically in the case that only the standard ethernet interface is installed)
+	hostname=`hostname`
+	echo "Please enter the hostname (The automatically indentified value is filled in, but you can easily change it if it is wrong.):"
+	read_value $hostname
+	hostname=$value
+	
+	
+	#PET=$(whiptail --title "Hostname??" --inputbox "Bitte Hostname angeben." 10 60 `hostname` 3>&1 1>&2 2>&3)
+	#exitstatus=$?
+	#if [ $exitstatus = 0 ]; then
+	#echo "Hostname Value" $hostname
+	#echo "Daten aus der Abfrage" $PET 
+	#hostname = $PET
+	#else
+	#	echo "You chose Cancel. / Sie haben die Installation Abgebrochen."
+	#fi
+	
+	ip=`hostname -I`
+    #whiptail --title " " --msgbox "Bitte geben Sie den Hostnamen ein (Der automatisch identifizierte Wert wird ausgefüllt, kann aber leicht geändert werden, wenn er falsch ist." 10 78
+	echo "Please enter the ip of the outside interface (The automatically indentified value is filled in, but you can easily change it if it is wrong.):"
+	#whiptail --title "Info Box" --msgbox "Geben Sie bitte die IP-Adresse der externen Schnittstelle ein (Der automatisch identifizierte Wert wird ausgefüllt, kann aber leicht geändert werden, wenn er falsch ist" 10 78
+	read_value $ip
+	ip=$value
+	
+	
+	#Mysql configuration
+	read_pw "Bitte geben Sie ein Passwort für den Root-Benutzer von mysql ein:"
+	mysqlRootPw=$password
+
+	#echo "Please enter the name of the mysql database for owncloud (The default value is filled in, but you can easily change it.):"
+	echo "Bitte geben Sie den Namen der mysql-Datenbank für owncloud ein (Der Standardwert ist ausgefüllt, kann aber leicht geändert werden.)"
+	read_value owncloud
+	ocDb=$value
+	
+	#whiptail --title "Info Box" --msgbox "Bitte geben Sie den Namen der mysql-Datenbank für owncloud ein (Der Standardwert ist ausgefüllt, kann aber leicht geändert werden" 10 78
+
+	echo "Bitte geben Sie den Namen des mysql-Benutzers für owncloud ein (Der Standardwert ist ausgefüllt, kann aber leicht geändert werden.):"
+#whiptail --title "Info Box" --msgbox "Bitte geben Sie den Namen der mysql-Datenbank für owncloud ein (Der Standardwert ist ausgefüllt, kann aber leicht geändert werden" 10 78
+	read_value owncloud
+	ocDbUser=$value
+	read_pw "Bitte geben Sie ein Passwort für den eigenen Benutzer von mysql ein:"
+	ocDbUserPw=$password
+
+	#Apache2 configuration
+	echo "Bitte geben Sie die maximale Größe der Dateien ein, die in owncloud hochgeladen werden können (Der Standardwert ist ausgefüllt, kann aber leicht geändert werden.):"
+	read_value 1024M
+	maxFileSize=$value
+	#Typically user and group filled static
+	htuser='www-data'
+	htgroup='www-data'
+
+	#Owncloud configuration
+	echo "Bitte geben Sie den Namen des eigenen Cloud-Administrators ein (Der Standardwert ist ausgefüllt, kann aber leicht geändert werden.):"
+	read_value admin
+	ocAdminUser=$value
+	read_pw "Please enter a password for the owncloud administrator:"
+	ocAdminUserPw=$password
+
+	echo "Bitte geben Sie den Pfad zum Ordner für Dateien auf owncloud ein (Der Standardwert ist ausgefüllt, kann aber leicht geändert werden.):"
+	read_value /home/owncloud
+	ocDataDir=$value
+
+	#Fail2Ban
+	logTimeZone=`cat /etc/timezone`
+	echo "Bitte geben Sie die Zeitzone für das eigene Cloud-Protokoll an (Der Standardwert ist ausgefüllt, kann aber leicht geändert werden.):"
+	read_value $logTimeZone
+	logTimeZone=$value
+
+	echo "Bitte geben Sie den Pfad ein, unter dem Ihr eigenes Protokoll gespeichert werden soll. (Der Standardwert ist ausgefüllt, kann aber leicht geändert werden):"
+	read_value /var/log/owncloud.log
+	logFile=$value
+
+	echo "Bitte geben Sie die max schlägt bis fail2ban ban eine IP (Der Standardwert ist gefüllt, aber Sie können es leicht ändern.):"
+	read_value 3
+	maxRetry=$value
+
+}
+
+generate_self_signed_certificate () {
+
+	echo_info "Das Skript erzeugt nun ein selbst signiertes Zertifikat mit einem selbst erstellten Zertifikat. Dafür fragt das Skript nach vielen Werten. Die meisten, die Sie mit einem Punkt füllen können, wenn Sie keinen gültigen Wert haben. Die "zusätzlichen" Attribute können Sie mit Enter überspringen. Nur die Passphrase für eigene -keykey und der gemeinsame Name sind wichtig. Der erste Wert ist das Passwort für Ihr ca, geben Sie bitte ein starkes Passwort ein und nehmen Sie eine Notiz davon. Sie brauchen es mindestens einige Sekunden später. Der gemeinsame Name muss dem Hostnamen entsprechen und Sie müssen ihn in zwei Zeit eingeben."
+
+	#Generate a self signed certificate with a self created ca (More Information: https://thomas-leister.de/internet/eine-eigene-openssl-ca-erstellen-und-self-signed-certe-ausstellen/)
+	# This was necessary because otherwise Apps like DAVdroid didn't work with the owncloud (More Information: https://davdroid.bitfire.at/faq/entry/importing-a-certificate)
+
+	#Create a new ca
+	mkdir /etc/ssl/ownca/
+	cd /etc/ssl/ownca/
+	openssl genrsa -aes256 -out own-ca.key 2048
+	#Create the root certificate that is valid for 10 years
+	openssl req -x509 -new -nodes -extensions v3_ca -key own-ca.key -days 3650 -out own-ca-root.pem -sha512
+	#Create a client certificate that is valid for 10 years and sign it
+	openssl genrsa -out self-signed-cert.key 4096
+	openssl req -new -key self-signed-cert.key -out self-signed-cert.csr -sha512
+	openssl x509 -req -in self-signed-cert.csr -CA own-ca-root.pem -CAkey own-ca.key -CAcreateserial -out self-signed-cert.pem -days 3650 -sha512
+	rm self-signed-cert.csr
+	mv ./self-signed-cert.pem ../certs
+	mv ./self-signed-cert.key ../private
+	mv ./own-ca-root.pem ../certs
+	
+}
+
+install_self_signed_certificate () {
+	sed -i "s/		SSLCertificateFile	\/etc\/ssl\/certs\/ssl-cert-snakeoil.pem/		SSLCertificateFile	\/etc\/ssl\/certs\/self-signed-cert.pem/" /etc/apache2/sites-available/default-ssl.conf
+	sed -i "s/		SSLCertificateKeyFile \/etc\/ssl\/private\/ssl-cert-snakeoil.key/		SSLCertificateKeyFile \/etc\/ssl\/private\/self-signed-cert.key/" /etc/apache2/sites-available/default-ssl.conf
+	sed -i "s/		#SSLCertificateChainFile \/etc\/apache2\/ssl.crt\/server-ca.crt/		SSLCertificateChainFile \/etc\/ssl\/certs\/own-ca-root.pem/" /etc/apache2/sites-available/default-ssl.conf
+	/etc/init.d/apache2 restart
+}
+
+#You can customize the called functions here (you are responsible for looking for dependencies between them)
+check_root
+check_not_installed
+ask_for_values
+#generate_self_signed_certificate
+#echo_info "Nun wird der unbeaufsichtigte Teil des Setups gestartet."
+#install_owncloud
+#create_mysql_db
+#patch_apache_filesize
+#configure_owncloud
+#install_fail2ban
+#enable_apache_ssl
+#enable_apc_cache
+#install_self_signed_certificate
+
+echo_info "FERTIG"
