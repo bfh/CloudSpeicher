@@ -364,15 +364,15 @@ install_self_signed_certificate () {
 check_root
 check_not_installed
 ask_for_values
-#generate_self_signed_certificate
-#echo_info "Nun wird der unbeaufsichtigte Teil des Setups gestartet."
-#install_owncloud
-#create_mysql_db
-#patch_apache_filesize
-#configure_owncloud
-#install_fail2ban
-#enable_apache_ssl
-#enable_apc_cache
-#install_self_signed_certificate
+generate_self_signed_certificate
+echo_info "Nun wird der unbeaufsichtigte Teil des Setups gestartet."
+install_owncloud
+create_mysql_db
+patch_apache_filesize
+configure_owncloud
+install_fail2ban
+enable_apache_ssl
+enable_apc_cache
+install_self_signed_certificate
 
 echo_info "FERTIG"
